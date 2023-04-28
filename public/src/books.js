@@ -16,7 +16,7 @@ function getBorrowersForBook(book, accounts) {
   const borrowed = book.borrows;
   const borrower = borrowed.reduce((result,borrow) => {
     const borrowID = borrow.id;
-    const accountInfo = accounts.find((account) => account.id == borrowID);
+    const accountInfo = accounts.find((account) => account.id === borrowID);
     const { id, ...others } = accountInfo;
     const accountUpdate = { id, returned: borrow.returned, ...others };
     result.push(accountUpdate);
