@@ -22,8 +22,8 @@ function getBooksPossessedByAccount(account, books, authors) {
   books.forEach((book)=>{
       let borrows = book.borrows;
       borrows.forEach((borrow)=>{
-          if(borrow.id === account.id && borrow.returned == false){
-              let author = authors.find((author)=> author.id == book.authorId)              
+          if(borrow.id === account.id && borrow.returned === false){
+              let author = authors.find((author)=> author.id === book.authorId)
               const content = {...book,author:author,borrows:[{id:account.id,returned:false}]};
               booksOut.push(content);
           }
