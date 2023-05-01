@@ -1,37 +1,39 @@
 function getTotalBooksCount(books) {
-  return books.length;
+    // return the total number of books
+    return books.length;
 }
 
 function getTotalAccountsCount(accounts) {
-  return accounts.length;
+    // return the total number of accounts
+    return accounts.length;
 }
 
 function getBooksBorrowedCount(books) {
-  let total = 0;
-  for (let i=0;i<books.length;i++) {
-    for(let j=0;j<books[i].borrows.length;j++) {
-        if (books[i].borrows[j].returned === false) total++
+    let total = 0;
+    for (let i=0;i<books.length;i++) {
+        for(let j=0;j<books[i].borrows.length;j++) {
+            if (books[i].borrows[j].returned === false) total++
+        }
     }
-  }
-  return total
+    return total
 }
 
 function getMostCommonGenres(books) {
-  let commonGenres = [];
-  for (let i=0;i<books.length;i++) {
-    let genre = books[i].genre;
-    const genreExist = commonGenres.find((book) => book.name === genre);
-    if(genreExist) {
-      genreExist.count++;
-    } else {
-      const name = genre;
-      const count = 1;
-      const content = {name,count};
-      commonGenres.push(content);
+    let commonGenres = [];
+    for (let i=0;i<books.length;i++) {
+        let genre = books[i].genre;
+        const genreExist = commonGenres.find((book) => book.name === genre);
+        if(genreExist) {
+            genreExist.count++;
+        } else {
+            const name = genre;
+            const count = 1;
+            const content = {name,count};
+            commonGenres.push(content);
+        }
     }
-  }
-  commonGenres.sort((genreA,genreB) => genreB.count-genreA.count);
-  return commonGenres.slice(0,5);
+    commonGenres.sort((genreA,genreB) => genreB.count-genreA.count);
+    return commonGenres.slice(0,5);
 }
 
 function getMostPopularBooks(books) {
