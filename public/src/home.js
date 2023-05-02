@@ -58,6 +58,7 @@ function getMostPopularBooksAuthor(books, authors) {
       popularBooks.push(content);
   }
   popularBooks.sort((bookA,bookB) => bookB.count-bookA.count);
+  console.log("test")
   return popularBooks.slice(0,5);
 }
 
