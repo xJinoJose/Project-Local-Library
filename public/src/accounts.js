@@ -1,21 +1,29 @@
 function findAccountById(accounts, id) {
-    // returns the account that matches the given ID
+    // returns the account that matches the provided id
     return accounts.find((account) => account.id === id);
 }
 
 function sortAccountsByLastName(accounts) {
-    // returns the accounts after sorting by account.last.name.
-    return accounts.sort((accountA, accountB) => (accountA.name.last.toLowerCase() > accountB.name.last.toLowerCase() ? 1:-1));
+    // creates a new array of all accounts.name
+    const accountsName = accounts.map(({name}) => {
+        return { name:name };
+    });
+
+    // return accountsName after sorting by accountsName.name.last
+    return accountsName.sort((accountsNameA, accountsNameB) => (accountsNameA.name.last.toLowerCase() > accountsNameB.name.last.toLowerCase() ? 1:-1));
 }
 
 function getTotalNumberOfBorrows(account, books) {
+    // return the number of times an account.id matches the books.borrows.id
     const id = account.id;
     let total = 0;
-    for (let i=0;i<books.length;i++){
-        for(let j=0;j<books[i].borrows.length;j++) {
-            if (id === books[i].borrows[j].id) total++
-        }
-    }
+    // goes through the book
+    books.forEach((book) => {
+        // goes through the borrows in books
+        book.borrows.forEach((borrow) => {
+            if (id === borrow.id) total++
+        });
+    });
     return total
 }
 
